@@ -6,12 +6,15 @@
 
 using namespace std;
 
-void inter(int n,vector<double>v)
+void inter(int n,vector<double>&v)
 {
-	for (int i = 0; i < n; i++)
-	{
-		cin>>v[i];
-	}
+    double temp;
+    for (int i = 0; i < n; i++)
+    {
+        cin>>temp;
+        v.push_back(temp);
+
+    }
 	
 }
 
@@ -23,8 +26,8 @@ public:
 	public:
 		static double mean(vector<double>a)
 		{
-			int sum=0;
-			for (int i:a)
+			double sum=0;
+			for (double i:a)
 			{
 				sum+=i;
 			}
@@ -764,7 +767,7 @@ int main()
 					variance = statistics::dispersion::variance(v);
 					cout<<"THE CONFIDENCE INTERVAL: "<<statistics::estimation::ConfidenceIntervals::normal(variance,mean,level)<<endl;
 				}
-				else if (z2=2)
+				else if (z2==2)
 				{
 					cout<<"ENTER THE MEAN"<<endl;
 					cin>>mean;
