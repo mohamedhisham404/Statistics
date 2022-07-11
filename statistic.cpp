@@ -6,15 +6,14 @@
 
 using namespace std;
 
-void inter(int n,vector<double>&v)
+void enter(int n,vector<double>&v)
 {
-    double temp;
-    for (int i = 0; i < n; i++)
-    {
-        cin>>temp;
-        v.push_back(temp);
-
-    }
+	double temp;
+	for (int i = 0; i < n; i++)
+	{
+		cin>>temp;
+		v.push_back(temp);
+	}
 	
 }
 
@@ -26,8 +25,8 @@ public:
 	public:
 		static double mean(vector<double>a)
 		{
-			double sum=0;
-			for (double i:a)
+			int sum=0;
+			for (int i:a)
 			{
 				sum+=i;
 			}
@@ -47,27 +46,16 @@ public:
 
 		static double mode(vector<double>a)
 		{
-			int max_count = 1, res = a[0], curr_count = 0,mode,size=a.size();
-			for (int i = 0; i < size; ++i) 
-			{
-				if (a[i] == res)
-					++curr_count;
-				else 
+			    int counter = 0;
+				for (int pass = 0; pass < a.size() - 1; pass++)
 				{
-					if (curr_count > max_count) 
+					for (int count = pass + 1; count < a.size(); count++) 
 					{
-						max_count = curr_count;
-						mode=res;
-						res=a[i];
+						if (a [count] == a [pass])
+							counter++;
 					}
-					curr_count = 0;
-				}
-			}
-			if (max_count == 1)
-			{
-				return -1;
-			}
-			return mode;
+				}            
+				return counter;
 
 		}
 
@@ -510,7 +498,7 @@ int main()
 		cout<<"0. EXIT"<<endl;
 		cout<<"1. CALCULATE MEASURES OF CENTRAL TENDENCY"<<endl;
 		cout<<"2. CALCULATE MEASURES OF DISPERSION"<<endl;
-		cout<<"3. CALCULATE DISCRETE PROBABILITY DISTRIBUTION"<<endl;
+		cout<<"3. CALCULATE PROPERTIES OF DISCRETE PROBABILITY DISTRIBUTION"<<endl;
 		cout<<"4. CALCULATE PERMUTATION AND COMBINATION"<<endl;
 		cout<<"5. CALCULATE LINEAR RELATIONSHIP BETWEEN E(X) AND E(Y)"<<endl;
 		cout<<"6. CALCULATE DISCRETE PROBABILITY DISTRIBUTION"<<endl;
@@ -524,7 +512,7 @@ int main()
 			cout<<"ENTER THE SIZE OF DATA"<<endl;
 			cin>>n;
 			cout<<"ENTER THE DATA"<<endl;
-			inter(n,v);
+			enter(n,v);
 
 			cout<<"MEAN: "<<statistics::CentralTendency::mean(v)<<endl;
 			cout<<"MEDIAN: "<<statistics::CentralTendency::median(v)<<endl;
@@ -535,7 +523,7 @@ int main()
 			cout<<"ENTER THE SIZE OF DATA"<<endl;
 			cin>>n;
 			cout<<"ENTER THE DATA"<<endl;
-			inter(n,v);
+			enter(n,v);
 
 			cout<<"WHAT DO YOU WANT TO CACULATE"<<endl;
 			cout<<"1. PERCENTILE"<<endl;
@@ -567,9 +555,9 @@ int main()
 			cout<<"ENTER THE SIZE OF DATA"<<endl;
 			cin>>n;
 			cout<<"ENTER THE DATA"<<endl;
-			inter(n,data);
+			enter(n,data);
 			cout<<"ENTER THE PROBABILITY"<<endl;
-			inter(n,prob);
+			enter(n,prob);
 			cout<<"EXPECTED: "<<statistics::probability::expected(data,prob)<<endl;
 			cout<<"VARIANCE: "<<statistics::probability::expected(data,prob)<<endl;
 			cout<<"STANDARD DEVIATION: "<<statistics::probability::expected(data,prob)<<endl;
@@ -656,7 +644,7 @@ int main()
 					cout<<"ENTER THE SIZE OF DATA"<<endl;
 					cin>>n;
 					cout<<"ENTER THE DATA"<<endl;
-					inter(n,v);	
+					enter(n,v);	
 					mean=statistics::CentralTendency::mean(v);
 					variance = statistics::dispersion::variance(v);
 					cout<<"PROBABILITY DISTRIBUTION"<<statistics::continuousProbDist::normal::ProbabilityDist(mean,variance,xvariable)<<endl;
@@ -671,7 +659,7 @@ int main()
 					cout<<"ENTER THE SIZE OF DATA"<<endl;
 					cin>>n;
 					cout<<"ENTER THE DATA"<<endl;
-					inter(n,v);	
+					enter(n,v);	
 					mean=statistics::CentralTendency::mean(v);
 					variance = statistics::dispersion::variance(v);
 					cout<<"LINEAR TRANSFORMATION DITRIBUTION"<<statistics::continuousProbDist::normal::linearTransfomationDist(mean,variance,xco,ab,xvariable)<<endl;
@@ -736,7 +724,7 @@ int main()
 				cout<<"ENTER THE SIZE OF DATA"<<endl;
 				cin>>n;
 				cout<<"ENTER THE DATA"<<endl;
-				inter(n,v);
+				enter(n,v);
 				cout<<"MEAN: "<<statistics::estimation::pointEstimation::mean(v)<<endl;
 				cout<<"VARIANCE: "<<statistics::estimation::pointEstimation::variance(v)<<endl;	
 			}
@@ -762,12 +750,12 @@ int main()
 					cout<<"ENTER THE SIZE OF DATA"<<endl;
 					cin>>n;
 					cout<<"ENTER THE DATA"<<endl;
-					inter(n,v);	
+					enter(n,v);	
 					mean=statistics::CentralTendency::mean(v);
 					variance = statistics::dispersion::variance(v);
 					cout<<"THE CONFIDENCE INTERVAL: "<<statistics::estimation::ConfidenceIntervals::normal(variance,mean,level)<<endl;
 				}
-				else if (z2==2)
+				else if (z2=2)
 				{
 					cout<<"ENTER THE MEAN"<<endl;
 					cin>>mean;
